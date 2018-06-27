@@ -143,7 +143,7 @@ def goregister(request):
     newUser.is_active = False
     newUser.save()
     primaryKey = newUser.pk
-    apikey = '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'
+    apikey = ''
     sg = sendgrid.SendGridAPIClient(apikey=apikey)
     from_email = Email("noreply@iitg.com")
     to_email = Email(email)
@@ -491,7 +491,7 @@ def userCheckandPass(request):
         randStr = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         user.set_password(randStr)
         user.save()
-        apikey = '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'
+        apikey = ''
         sg = sendgrid.SendGridAPIClient(apikey=apikey)
         from_email = Email("noreply@iitg.com")
         to_email = Email(email)
