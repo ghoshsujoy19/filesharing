@@ -1,0 +1,2 @@
+apikey = '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'
+sg = sendgrid.SendGridAPIClient(apikey=apikey)

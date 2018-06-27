@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    {%  load static %}
+    <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="/home/">
+                            <img src="{% static 'images/icon/logo.png' %}" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/dept/">
+                                <i class="fas fa-tachometer-alt"></i>Departments</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/courses/">
+                                <i class="fas fa-tachometer-alt"></i>Courses</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/users/">
+                                <i class="fas fa-tachometer-alt"></i>Users</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/files/">
+                                <i class="fas fa-tachometer-alt"></i>Uploaded Files</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="/home/">
+                    <img src="{%  static 'images/icon/logo.png' %}" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/dept/">
+                                <i class="fas fa-tachometer-alt"></i>Departments</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/courses/">
+                                <i class="fas fa-tachometer-alt"></i>Courses</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/users/">
+                                <i class="fas fa-tachometer-alt"></i>Users</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/files/">
+                                <i class="fas fa-tachometer-alt"></i>Uploaded Files</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="content">
+                                            {% if user.is_authenticated %}
+                                                <a class="js-acc-btn" href="#">{{ user.username }}</a>
+                                            {% else %}
+                                                <a class="js-acc-btn" href="#">Unknown</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        {% if user.is_authenticated %}
+                                                            <a href="#">{{ user.username }}</a>
+                                                        {% else %}
+                                                            <a href="#">Unknown</a>
+                                                        {% endif %}
+
+                                                    </h5>
+                                                        {% if user.is_authenticated %}
+                                                             <span class="email">{{ user.email }}</span>
+                                                        {% endif %}
+
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                {% if user.is_authenticated %}
+                                                    {% if user.is_staff %}
+                                                        <div class="account-dropdown__item">
+                                                            <a href="/home/">
+                                                                <i class="zmdi zmdi-account"></i>Main Site</a>
+                                                        </div>
+                                                    {% endif %}
+{#                                                <div class="account-dropdown__item">#}
+{#                                                    <a href="#">#}
+{#                                                        <i class="zmdi zmdi-settings"></i>Setting</a>#}
+{#                                                </div>#}
+                                                {% endif %}
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                {% if user.is_authenticated %}
+                                                <a href="/logout/">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Upload File</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" id="uploadForm" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Department</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="select" id="department" class="form-control" required>
+                                                        <option value="only">Please select</option>
+                                                        {% for dept in depts %}
+                                                            <option value="{{ dept }}">{{ dept }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Course Type</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="ctype" id="coursetype" class="form-control" required>
+                                                        <option value="only">Please select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Semester</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="semester" id="semester" class="form-control" required>
+                                                        <option value="only">Please select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Course</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="course" id="course" class="form-control" required>
+                                                        <option value="only">Please select</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="reset" class="btn btn-danger" form="uploadForm" id="reset">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning" style="text-align: center;cursor: default">
+                                        <thead>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Deptt Name</th>
+                                                <th>Course</th>
+                                                <th>Likes</th>
+                                                <th>Dislikes</th>
+                                                <th>Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="fileTable" >
+                                            {% for data in files %}
+                                                <tr>
+                                                    <td style="cursor: default;">{{ data.uploadUser.username }}</td>
+                                                    <td style="cursor: default;">{{ data.course.dept.deptName }}</td>
+                                                    <td style="cursor: default;">{{ data.course.dept.courseType }} - {{ data.course.semester }} - {{ data.course.courseID }}</td>
+                                                    <td style="cursor: default;">{{ data.numLikes }}</td>
+                                                    <td style="cursor: default;">{{ data.numDislikes }}</td>
+                                                    <td class="defineActivity" data-primary="{{ data.pk }}" style="cursor: pointer;">
+                                                        {%  if data.isActive %}
+                                                            <i class="zmdi zmdi-check-circle"></i>
+                                                        {% else %}
+                                                            <i class="zmdi zmdi-block"></i>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'vendor/bootstrap-4.1/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'vendor/slick/slick.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/counter-up/jquery.counterup.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}">
+    </script>
+
+    <script>
+        var dept;
+        var ctype;
+        var sem;
+        $('#reset').click(function () {
+            $('#coursetype').empty().append($('<option>', {
+                           value: 'only',
+                           text: 'Please Select'
+                       }));
+            $('#semester').empty().append($('<option>', {
+                           value: 'only',
+                           text: 'Please Select'
+                       }));
+            $('#course').empty().append($('<option>', {
+                           value: 'only',
+                           text: 'Please Select'
+                       }));
+            $.ajax({
+                    url: '/selcallfiles2',
+                    dataType: 'json',
+                    success: function (data) {
+                        var tablelist = data.files;
+                        $("#fileTable").empty();
+                        for (var key in tablelist) {
+                            var val = tablelist[key]
+                            if (val['isAct'] == true) {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-check-circle"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                            else {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-block"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                        }
+                    }
+                });
+        });
+
+        $('#department').change(function(){
+            dept = this.value;
+            if(dept != 'only') {
+                console.log(dept);
+                $.ajax({
+                    url: '/selcType2',
+                    data: {
+                        'dept': dept
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var listtype = data.cType;
+                        console.log(listtype);
+                        $('#coursetype').empty().append($('<option>', {
+                            value: 'only',
+                            text: 'Please Select'
+                        }));
+                        for (i = 0; i < listtype.length; i++) {
+                            $('#coursetype').append($('<option>', {
+                                value: listtype[i],
+                                text: listtype[i]
+                            }));
+                        }
+                        var tablelist = data.files;
+                        $("#fileTable").empty();
+                        for (var key in tablelist) {
+                            var val = tablelist[key]
+                            if (val['isAct'] == true) {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-check-circle"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                            else {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-block"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#coursetype').change(function(){
+            ctype = this.value;
+            if(dept != 'only' && ctype != 'only') {
+                console.log(dept);
+                $.ajax({
+                    url: '/selcsem2',
+                    data: {
+                        'dept': dept,
+                        'ctype': ctype
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var semnum = data.numsem;
+                        $('#semester').empty().append($('<option>', {
+                            value: 'only',
+                            text: 'Please Select'
+                        }));
+                        for (i = 1; i <= semnum; i++) {
+                            $('#semester').append($('<option>', {
+                                value: i.toString(),
+                                text: i.toString()
+                            }));
+                        }
+                        var tablelist = data.files;
+                        $("#fileTable").empty();
+                        for (var key in tablelist) {
+                            var val = tablelist[key]
+                            if (val['isAct'] == true) {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-check-circle"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                            else {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-block"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#semester').change(function(){
+            sem = this.value;
+            if(dept != 'only' && ctype != 'only' && sem != 'only') {
+                console.log(dept);
+                $.ajax({
+                    url: '/selcourse2',
+                    data: {
+                        'dept': dept,
+                        'ctype': ctype,
+                        'sem': sem
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var listtype = data.courses;
+                        console.log(listtype);
+                        $('#course').empty().append($('<option>', {
+                            value: 'only',
+                            text: 'Please Select'
+                        }));
+                        for (var key in listtype) {
+                            $('#course').append($('<option>', {
+                                value: key,
+                                text: key + ' - ' + listtype[key]
+                            }));
+                        }
+                        var tablelist = data.files;
+                        $("#fileTable").empty();
+                        for (var key in tablelist) {
+                            var val = tablelist[key]
+                            if (val['isAct'] == true) {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-check-circle"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                            else {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-block"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#course').change(function(){
+            var courseID = this.value;
+            if(dept != 'only' && ctype != 'only' && sem != 'only' && courseID != 'only') {
+                console.log(dept);
+                $.ajax({
+                    url: '/selcfiles2',
+                    data: {
+                        'dept': dept,
+                        'ctype': ctype,
+                        'sem': sem,
+                        'course': courseID
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var tablelist = data.files;
+                        $("#fileTable").empty();
+                        for (var key in tablelist) {
+                            var val = tablelist[key]
+                            if (val['isAct'] == true) {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-check-circle"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                            else {
+                                $('#fileTable').append('<tr>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['username'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['dept'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['course'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['L'] + '</td>\n' +
+                                    '                                                    <td style="cursor: default;">' + val['D'] + '</td>\n' +
+                                    '                                                    <td class="defineActivity" data-primary="' + key + '" style="cursor: pointer;">\n' +
+                                    '                                                            <i class="zmdi zmdi-block"></i>\n' +
+                                    '                                                    </td>\n' +
+                                    '                                                </tr>');
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- Main JS-->
+    <script src="{%  static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

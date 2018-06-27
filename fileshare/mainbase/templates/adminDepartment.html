@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    {%  load static %}
+    <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="/home/">
+                            <img src="{% static 'images/icon/logo.png' %}" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/dept/">
+                                <i class="fas fa-tachometer-alt"></i>Departments</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/courses/">
+                                <i class="fas fa-tachometer-alt"></i>Courses</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/users/">
+                                <i class="fas fa-tachometer-alt"></i>Users</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/files/">
+                                <i class="fas fa-tachometer-alt"></i>Uploaded Files</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="/home/">
+                    <img src="{%  static 'images/icon/logo.png' %}" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/dept/">
+                                <i class="fas fa-tachometer-alt"></i>Departments</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/courses/">
+                                <i class="fas fa-tachometer-alt"></i>Courses</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/users/">
+                                <i class="fas fa-tachometer-alt"></i>Users</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/siteadmin/files/">
+                                <i class="fas fa-tachometer-alt"></i>Uploaded Files</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="content">
+                                            {% if user.is_authenticated %}
+                                                <a class="js-acc-btn" href="#">{{ user.username }}</a>
+                                            {% else %}
+                                                <a class="js-acc-btn" href="#">Unknown</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        {% if user.is_authenticated %}
+                                                            <a href="#">{{ user.username }}</a>
+                                                        {% else %}
+                                                            <a href="#">Unknown</a>
+                                                        {% endif %}
+
+                                                    </h5>
+                                                        {% if user.is_authenticated %}
+                                                             <span class="email">{{ user.email }}</span>
+                                                        {% endif %}
+
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                {% if user.is_authenticated %}
+                                                    {% if user.is_staff %}
+                                                        <div class="account-dropdown__item">
+                                                            <a href="/home/">
+                                                                <i class="zmdi zmdi-account"></i>Main Site</a>
+                                                        </div>
+                                                    {% endif %}
+{#                                                <div class="account-dropdown__item">#}
+{#                                                    <a href="#">#}
+{#                                                        <i class="zmdi zmdi-settings"></i>Setting</a>#}
+{#                                                </div>#}
+                                                {% endif %}
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                {% if user.is_authenticated %}
+                                                <a href="/logout/">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Upload File</strong>
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="/addDept/" method="post" id="uploadForm" enctype="multipart/form-data" class="form-horizontal">
+                                            {% csrf_token %}
+{#                                            <div class="row form-group">#}
+{#                                                <div class="col col-md-3">#}
+{#                                                    <label for="file-input" class=" form-control-label">File input</label>#}
+{#                                                </div>#}
+{#                                                <div class="col-12 col-md-9">#}
+{#                                                    <input type="file" id="inputfile" name="file-input" class="form-control-file">#}
+{#                                                </div>#}
+{#                                            </div>#}
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Department</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="filedesc" name="deptName" placeholder="Text" class="form-control" required>
+                                                    <small class="form-text text-muted">Please enter department's name</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Course-Type</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="fileyear" name="courseType" placeholder="" class="form-control" required>
+                                                    <small class="form-text text-muted">Please enter the type of course dept offers</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Semester Count</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="number" id="fileat" name="semesterCount" placeholder="" class="form-control" required>
+                                                    <small class="form-text text-muted">Please enter the number of semesters</small>
+                                                </div>
+                                            </div>
+
+{#                                            <div class="row form-group">#}
+{#                                                <div class="col col-md-3">#}
+{#                                                    <label for="select" class=" form-control-label">Select Department</label>#}
+{#                                                </div>#}
+{#                                                <div class="col-12 col-md-9">#}
+{#                                                    <select name="select" id="department" class="form-control" required>#}
+{#                                                        <option value="Please select">Please select</option>#}
+{#                                                        {% for dept in depts %}#}
+{#                                                            <option value={{ dept }}>{{ dept }}</option>#}
+{#                                                        {% endfor %}#}
+{#                                                    </select>#}
+{#                                                </div>#}
+{##}
+{#                                            </div>#}
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary" form="uploadForm">
+                                            <i class="fa fa-dot-circle-o"></i> Add Department
+                                        </button>
+                                        <button type="reset" class="btn btn-danger" form="uploadForm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+{#                                        <button type="button" class="btn btn-dark" id="addDept">#}
+{#                                            <i class="fa fa-plus"></i> Show/Hide Dept(s)#}
+{#                                        </button>#}
+                                    </div>
+                                </div>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning" id="departmentTable" style="text-align: center; cursor: default">
+                                        <thead style="cursor: auto">
+                                            <tr>
+                                                <th>Department Name</th>
+                                                <th>Course Type</th>
+                                                <th>Semester Count</th>
+                                                <th>Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for data in context %}
+                                                <tr>
+                                                    <td style="cursor: default">{{ data.deptName }}</td>
+                                                    <td style="cursor: default">{{ data.courseType }}</td>
+                                                    <td style="cursor: default">{{ data.semesterCount }}</td>
+                                                    <td class="defineActivity" data-primary="{{ data.pk }}" style="cursor: pointer;">
+                                                        {%  if data.isActive %}
+                                                            <i class="zmdi zmdi-check-circle"></i>
+                                                        {% else %}
+                                                            <i class="zmdi zmdi-block"></i>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'vendor/bootstrap-4.1/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'vendor/slick/slick.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'vendor/counter-up/jquery.counterup.min.js' %}">
+    </script>
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}">
+    </script>
+
+    <script>
+        $('.defineActivity').click(function () {
+           console.log('yup');
+        });
+    </script>
+    <!-- Main JS-->
+    <script src="{%  static 'js/main.js'%}"></script>
+
+</body>
+
+</html>
+<!-- end document-->
